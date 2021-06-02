@@ -1,0 +1,46 @@
+<h1>Select your cosmetics params</h1>
+{% if error_message %}<b>{{error_message}}</b>{% endif %}
+<form action="{% url 'select' %}" method="post">
+{% csrf_token %}
+{% if ages_list %}
+    <ul>
+    <h3>Age</h3>
+    {% for age in ages_list %}
+        <input type="radio" name="choice_age" id="choice_age{{ forloop.counter }}" value="{{ age.id }}" >
+        <label for="choice_age{{ forloop.counter }}">{{ age.limits }}</label><br>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% if prices_list %}
+    <ul>
+    <h3>Price</h3>
+    {% for price in prices_list %}
+        <input type="radio" name="choice_price" id="choice_price{{ forloop.counter }}" value="{{ price.id }}" >
+        <label for="choice_price{{ forloop.counter }}">{{ price.limits }}</label><br>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% if brands_list %}
+    <ul>
+    <h3>Brand</h3>
+    <input type="radio" name="choice_brand" id="0" value="0" checked>
+    <label for="0">None</label><br>
+    {% for brand in brands_list %}
+        <input type="radio" name="choice_brand" id="choice_brand{{ forloop.counter }}" value="{{ brand.id }}" >
+        <label for="choice_brand{{ forloop.counter }}">{{ brand.name }}</label><br>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% if types_list %}
+    <ul>
+    <h3>Type</h3>
+    <input type="radio" name="choice_type" id="0" value="0" checked>
+    <label for="0">None</label><br>
+    {% for type in types_list %}
+        <input type="radio" name="choice_type" id="choice_type{{ forloop.counter }}" value="{{ type.id }}" >
+        <label for="choice_type{{ forloop.counter }}">{{ type.name }}</label><br>
+    {% endfor %}
+    </ul>
+{% endif %}
+<input type="submit" value="Select">
+</form>
