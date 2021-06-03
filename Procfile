@@ -1,1 +1,1 @@
-web: gunicorn plaindjango.wsgi:application --log-file log.txt
+web: gunicorn cosmetics.wsgi --log-file -
